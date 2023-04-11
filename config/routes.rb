@@ -17,9 +17,14 @@ Rails.application.routes.draw do
     get 'users/confirm' => 'users#confirm' , as: :users_canfirm
     patch 'users/my_page/cancel' => 'users#cancel' , as: :users_cancle
   end
+  
+  devise_scope :public do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   scope module: :public do
     root to: "homes#top"
+
   end
 
   namespace :admin do
