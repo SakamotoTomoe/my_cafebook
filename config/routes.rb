@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     patch 'users/my_page/cancel' => 'users#cancel' , as: :users_cancle
   end
   
-  devise_scope :public do
+  devise_scope :user do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
