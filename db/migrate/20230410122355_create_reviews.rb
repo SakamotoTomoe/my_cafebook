@@ -8,7 +8,6 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.string :opening_hours, null: false
       t.string :day_off, null: false
       t.text :review, null: false
-      t.string :select_point, null: false
 
       t.timestamps
     end

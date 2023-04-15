@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_13_115320) do
+ActiveRecord::Schema.define(version: 2023_04_15_131153) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,6 +60,21 @@ ActiveRecord::Schema.define(version: 2023_04_13_115320) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "keyword_reviews", force: :cascade do |t|
+    t.integer "keyword_id", null: false
+    t.integer "review_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["keyword_id"], name: "index_keyword_reviews_on_keyword_id"
+    t.index ["review_id"], name: "index_keyword_reviews_on_review_id"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "keyword", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "cafe_name", null: false
@@ -67,7 +82,6 @@ ActiveRecord::Schema.define(version: 2023_04_13_115320) do
     t.string "opening_hours", null: false
     t.string "day_off", null: false
     t.text "review", null: false
-    t.string "select_point", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -89,4 +103,6 @@ ActiveRecord::Schema.define(version: 2023_04_13_115320) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "keyword_reviews", "keywords"
+  add_foreign_key "keyword_reviews", "reviews"
 end
