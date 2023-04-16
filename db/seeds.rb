@@ -6,6 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Keyword.create!(
-  keyword: "ランチ"
+#Keyword.create!(
+  #keyword: "ランチ"
+  #)
+
+words = [
+  'モーニング',
+  'ランチ',
+  'ディナー'
+]
+
+words.each do |word|
+  Keyword.create!(
+    keyword: word
   )
+end

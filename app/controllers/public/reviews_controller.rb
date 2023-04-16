@@ -20,6 +20,10 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def show
+    @review = Review.find(params[:id])
+  end
+
   private
 
   def reviews_params

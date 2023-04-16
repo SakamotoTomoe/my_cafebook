@@ -39,4 +39,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
   end
 
+  namespace :admin do
+    resources :keywords, only: [:index, :edit, :create, :update, :destroy]
+  end
 end

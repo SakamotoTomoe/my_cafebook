@@ -1,0 +1,9 @@
+<h1>レビュー詳細</h1>
+<%= @review.cafe_name %><br>
+<%= @review.address %><br>
+<%= @review.opening_hours %><br>
+<%= @review.day_off %><br>
+<%= @review.review %><br>
+<% @review.keywords.each do |keyword| %>
+  <%= keyword.keyword %>
+<% end %>
