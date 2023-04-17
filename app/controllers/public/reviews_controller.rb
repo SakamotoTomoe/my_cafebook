@@ -24,6 +24,28 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
+  def edit
+    @review = Review.find(params[:id])
+    @keywords = Keyword.all
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    @review.user_id = current_user.id
+    if @review.update(reviews_params)
+      @review.keywords.destroy_all
+      keyword_ids = params[:review][:keyword_ids]
+      keyword_ids[1..-1].each do |keyword_id|
+        keyword = Keyword.find(keyword_id.to_i)
+        @review.keywords << keyword #関連付ける
+      end
+      redirect_to review_path(@review.id)
+    else
+      @keywords = Keyword.all
+      render :edit
+    end
+  end
+
   private
 
   def reviews_params

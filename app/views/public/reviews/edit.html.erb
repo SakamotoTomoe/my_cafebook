@@ -1,0 +1,11 @@
+<h1>レビュー編集</h1>
+
+<%= form_with model: @review, url: review_path(@review.id), method: :patch do |f| %>
+  店舗名<%= f.text_field :cafe_name %><br>
+  住所<%= f.text_field :address %><br>
+  営業時間<%= f.text_area :opening_hours %><br>
+  定休日<%= f.text_field :day_off %><br>
+  レビュー<%= f.text_area :review %><br>
+  こだわり<%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %>
+  <%= f.submit '更新' %>
+<% end %>
