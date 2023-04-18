@@ -46,6 +46,15 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def search
+    if params[:searchword].present?
+      @reviews = Review.where('caption LIKE ?', "%#{params[:searchword]}%")
+      @searchword = params[:searchword]
+    else
+      @reviews = Review.all
+    end
+  end
+
   private
 
   def reviews_params
