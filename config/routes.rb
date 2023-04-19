@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+
+  scope module: :public do
+    get "search" => "searches#search"
+  end
+  
   scope module: :public do
     resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-    collection do
-      get 'search'
-    end
   end
 
   scope module: :public do
