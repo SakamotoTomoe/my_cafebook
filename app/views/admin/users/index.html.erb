@@ -1,0 +1,13 @@
+<h1>ユーザー一覧</h1>
+<% @users.each do |user| %>
+  ユーザーネーム <%= user.user_name %><br>
+  メールアドレス <%= user.email %><br>
+  パスワード <%= user.encrypted_password %><br>
+  自己紹介 <%= user.introduction %><br>
+  退会ステータス
+  <% if user.is_deleted == false %>
+    有効<br>
+  <% else %>
+    退会<br>
+  <% end %>
+<% end %>
