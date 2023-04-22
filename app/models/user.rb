@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   has_one_attached :image
+  
+  has_many :reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com', user_name: 'ゲスト') do |user|

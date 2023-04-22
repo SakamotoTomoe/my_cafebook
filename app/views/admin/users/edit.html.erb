@@ -1,12 +1,12 @@
 <h1>ユーザー編集</h1>
 <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
-  <%= f.text_field :user_name %>
-  <%= f.text_field :email %>
-  <%= f.text_field :encrypted_password %>
-  <%= f.text_area :introduction %>
-  <%= f.text_field :is_deleted %>
-  <%= f.label :is_deleted, '退会', value: 1 %>
-  <%= f.radio_button :is_deleted, '1' %>
-  <%= f.label :is_deleted, '有効', value: 0 %>
-  <%= f.radio_button :is_deleted, '0' %>
+  <%= f.text_field :user_name %><br>
+  <%= f.text_field :email %><br>
+  <%= f.text_field :encrypted_password %><br>
+  <%= f.text_area :introduction %><br>
+  <%= f.radio_button :is_deleted, true %>
+  <%= f.label :is_deleted, '退会', value: true %>
+  <%= f.radio_button :is_deleted, false %>
+  <%= f.label :is_deleted, '有効', value: false %>
+  <%= f.submit '更新' %>
 <% end %>

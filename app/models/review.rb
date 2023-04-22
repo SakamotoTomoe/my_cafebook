@@ -4,6 +4,8 @@ class Review < ApplicationRecord
 
   has_many :keyword_reviews, dependent: :destroy
   has_many :keywords, through: :keyword_reviews
+  has_many :comments, dependent: :destroy
+  belongs_to :user
 
   def get_image(width, height)
   unless image.attached?
