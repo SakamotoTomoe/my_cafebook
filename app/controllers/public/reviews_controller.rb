@@ -26,6 +26,7 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
+    @comments = Comment.new
   end
 
   def edit

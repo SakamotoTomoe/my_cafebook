@@ -6,4 +6,9 @@
   <%= review.day_off %><br>
   <%= review.review %><br>
   <%= review.keywords %><br>
+  <%= form_with model: @comments, url: comments_path, method: :post do |f| %>
+    <%= f.text_area :comment, {include_blank: 'コメントを入力してください'} %>
+    <%= f.submit '送信' %><br>
+  <% end %>
+  <%= review.comments %><br>
 <% end %>
