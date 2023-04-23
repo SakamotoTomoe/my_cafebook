@@ -24,6 +24,10 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
+  def index
+    @reviews = Review.all
+  end
+
   def edit
     @review = Review.find(params[:id])
     @keywords = Keyword.all
