@@ -3,7 +3,7 @@
   <%= image_tag @review.get_image(200,200) %>
   店舗名<%= f.text_field :cafe_name %><br>
   住所<%= f.text_field :address %><br>
-  営業時間<%= f.text_area :opening_hours, {include_blank: '例）月～金　13：00～17：00'} %><br>
+  営業時間<%= f.text_area :opening_hours, {placeholder: '例）月～金　13：00～17：00'} %><br>
   定休日<%= f.text_field :day_off %><br>
   レビュー<%= f.text_area :review %><br>
   こだわり検索<%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %><br>

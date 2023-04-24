@@ -1,14 +1,15 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_user!
   
   def create
-    comment = Comment.new(comment_params)
+    comment = current_user.comments.build(comments_params)
     comment.save
     redirect_to reviews_path
   end
-  
+
   private
-  
+
   def comments_params
-    params.require(:comment).permit(:user_id, :comment)
+    params.require(:comment).permit(:comment, :review_id)
   end
 end
