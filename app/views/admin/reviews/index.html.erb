@@ -1,0 +1,13 @@
+<h1>レビュー一覧</h1>
+
+<% @reviews.each do |review| %>
+  <%= image_tag review.get_image(200,200) %><br>
+  店舗名 <%= link_to review.cafe_name, admin_review_path(review.id) %><br>
+  住所 <%= review.address %><br>
+  営業時間 <%= review.opening_hours %><br>
+  定休日 <%= review.day_off %><br>
+  レビュー <%= review.review %><br>
+  <% review.keywords.each do |keyword| %>
+    こだわり <%= keyword.keyword %><br>
+  <% end %>
+<% end %>

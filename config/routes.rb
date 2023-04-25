@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get "search" => "searches#search"
   end
-  
+
   scope module: :public do
     resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :reviews, only: [:index, :show, :edit, :update, :destroy]
   end
 
   namespace :admin do

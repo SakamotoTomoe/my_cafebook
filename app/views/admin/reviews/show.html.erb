@@ -1,0 +1,13 @@
+<h1>レビュー詳細</h1>
+店舗名 <%= @review.cafe_name %><br>
+住所 <%= @review.address %><br>
+営業時間 <%= @review.opening_hours %><br>
+定休日 <%= @review.day_off %><br>
+レビュー <%= @review.review %><br>
+こだわり
+<% @review.keywords.each do |keyword| %>
+  <%= keyword.keyword %>
+<% end %><br>
+
+<%= link_to '編集', edit_admin_review_path(@review.id) %>
+<%= link_to '削除', admin_review_path(@review.id), method: :delete %>
