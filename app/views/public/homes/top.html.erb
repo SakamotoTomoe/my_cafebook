@@ -4,3 +4,11 @@
   <%= f.text_field :word %>
   <%= f.submit "検索" %>
 <% end %>
+
+<%= form_tag '/homes', method: :get do %>
+  <% [ 'apple', 'banana', 'orange' ].each do |fruit| %>
+    <%= check_box_tag 'fruits[]', fruit %>
+    <%= label_tag fruit.capitalize, for: 'fruits[]' %><br>
+  <% end %>
+  <%= submit_tag 'Search' %>
+<% end %>

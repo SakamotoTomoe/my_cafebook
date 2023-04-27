@@ -7,14 +7,5 @@
   定休日 <%= f.text_field :day_off %><br>
   レビュー <%= f.text_area :review %><br>
   こだわり検索 <%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %><br>
-  <%# @keywords.each do |keyword| %>
-  <div>
-    <%#= f.check_box :keyword,
-                    { multiple: true,
-                      checked: keyword.present? ? keyword.split(",").include?(keyword) : false },  #・・・①
-                      keyword, nil %>
-    <span><%#= select_point %></span>
-  </div>
-  <%# end %><%#= f.collection_select :select_point, :id, :select_point %><br>
   <%= f.submit '投稿' %>
 <% end %>
