@@ -6,9 +6,9 @@
 <% end %>
 
 <%= form_tag '/homes', method: :get do %>
-  <% [ 'apple', 'banana', 'orange' ].each do |fruit| %>
-    <%= check_box_tag 'fruits[]', fruit %>
-    <%= label_tag fruit.capitalize, for: 'fruits[]' %><br>
+  <% Keyword.all.each do |keyword| %>
+    <%= check_box_tag 'keywords[]', keyword.id %><%= keyword.keyword %>
+    <%#= label_tag keyword.keyword.capitalize, for: 'hogekeywords[]' %><br>
   <% end %>
   <%= submit_tag 'Search' %>
 <% end %>
