@@ -10,4 +10,13 @@ class Public::SearchesController < ApplicationController
     end
   end
 
+  def keyword_search
+    @keywords = Keyword.find(params[:keywords])
+    @reviews = []
+    @keywords.each do |keyword|
+      @reviews = @reviews + keyword.reviews
+    end
+    @reviews.uniq
+  end
+
 end

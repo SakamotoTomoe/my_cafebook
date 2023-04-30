@@ -1,0 +1,17 @@
+<h2>検索結果 "<%= @word %>"</h2>
+
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        店舗名 <%= review.cafe_name %><br>
+        住所 <%= review.address %><br>
+        営業時間 <%= review.opening_hours %><br>
+        定休日 <%= review.day_off %><br>
+        レビュー <%= review.review %><br>
+        こだわり
+        <% review.keywords.each do |keyword| %>
+          <%= keyword.keyword %>
+        <% end %><br>
+      </li>
+    <% end %>
+  </ul>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get "search" => "searches#search"
+    get "keyword_search" => "searches#keyword_search"
   end
 
   scope module: :public do

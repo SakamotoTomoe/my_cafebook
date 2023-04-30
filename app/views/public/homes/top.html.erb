@@ -5,7 +5,7 @@
   <%= f.submit "検索" %>
 <% end %>
 
-<%= form_tag '/homes', method: :get do %>
+<%= form_tag  keyword_search_path, method: :get do %>
   <% Keyword.all.each do |keyword| %>
     <%= check_box_tag 'keywords[]', keyword.id %><%= keyword.keyword %>
     <%#= label_tag keyword.keyword.capitalize, for: 'hogekeywords[]' %><br>
