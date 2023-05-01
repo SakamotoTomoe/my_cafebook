@@ -7,3 +7,27 @@
 <%= @user.user_name %><br>
 <%= @user.introduction %><br>
 <%= link_to '編集する', edit_user_path(current_user) %>
+
+<table>
+  <caption>ブックマーク一覧</caption>
+  <thead>
+    <tr>
+      <th>投稿者名</th>
+      <th>店舗名</th>
+      <th>レビュー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%= bookmark.review.user.user_name %></td>
+        <td>
+          <%= link_to review_path(bookmark.review) do %>
+            <%= bookmark.review.cafe_name %>
+          <% end %>
+        </td>
+        <td><%= bookmark.review.review %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

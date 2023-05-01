@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com', user_name: 'ゲスト') do |user|

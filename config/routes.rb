@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     get "search" => "searches#search"
     get "keyword_search" => "searches#keyword_search"
   end
+  
+  scope module: :public do
+    resources :reviews, except: [:index] do
+      resource :bookmarks, only: [:create, :destroy]
+    end
+  end
 
   scope module: :public do
     resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy]
