@@ -14,7 +14,11 @@
     <tr>
       <th>投稿者名</th>
       <th>店舗名</th>
+      <th>住所</th>
+      <th>営業時間</th>
+      <th>定休日</th>
       <th>レビュー</th>
+      <th>こだわり</th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +30,15 @@
             <%= bookmark.review.cafe_name %>
           <% end %>
         </td>
+        <td><%= bookmark.review.address %></td>
+        <td><%= bookmark.review.opening_hours %></td>
+        <td><%= bookmark.review.day_off %></td>
         <td><%= bookmark.review.review %></td>
+        <td>
+          <% bookmark.review.keywords.each do |keyword| %>
+            <%= keyword.keyword %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
