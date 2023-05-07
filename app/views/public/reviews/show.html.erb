@@ -1,4 +1,5 @@
 <h1>レビュー詳細</h1>
+<%= image_tag @review.get_image(200,200) %><br>
 店舗名 <%= @review.cafe_name %><br>
 住所 <%= @review.address %><br>
 営業時間 <%= @review.opening_hours %><br>

@@ -1,28 +1,39 @@
-<h1>レビュー一覧</h1>
-<% @reviews.each do |review| %>
-  <%= image_tag review.get_image(200,200) %><br>
-  店舗名 <%= link_to review.cafe_name, review_path(review.id) %><br>
-  住所 <%= review.address %><br>
-  営業時間 <%= review.opening_hours %><br>
-  定休日 <%= review.day_off %><br>
-  レビュー <%= review.review %><br>
-  <% review.keywords.each do |keyword| %>
-    こだわり <%= keyword.keyword %><br>
-  <% end %>
-  <% if current_user %>
-    <%= form_with model: @comments, url: comments_path, method: :post do |f| %>
-      <%= f.hidden_field :review_id , value: review.id %>
-      <%= f.text_area :comment, {placeholder: 'コメントを入力してください', size: '40×20'} %>
-      <%= f.submit '送信' %><br>
-    <% end %>
-  <% end %>
-  <% review.comments.each do |comment| %>
-    <% if comment.user.image.attached? %>
-      <%= image_tag comment.user.image,size: '5×5' %>
-    <% else %>
-      <%= image_tag 'no_image',size: '5×5' %>
-    <% end %>
-    <%= comment.user.user_name %>
-    <%= comment.comment %><br>
-  <% end %>
-<% end %>
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-12">
+      <div class="mx-auto" style="width: 400px;" class="text-center">
+      <h1>レビュー一覧</h1>
+      <% @reviews.each do |review| %>
+        <%= image_tag review.get_image(200,200) %><br>
+        店舗名 <%= link_to review.cafe_name, review_path(review.id) %><br>
+        住所 <%= review.address %><br>
+        営業時間 <%= review.opening_hours %><br>
+        定休日 <%= review.day_off %><br>
+        レビュー <%= review.review %><br>
+        <% review.keywords.each do |keyword| %>
+          こだわり <%= keyword.keyword %><br>
+        <% end %>
+        <% if current_user.id == review.user.id %>
+          <%= link_to '編集', edit_review_path(review.id) %>
+        <% end %>
+        <% if current_user %>
+          <%= form_with model: @comments, url: comments_path, method: :post do |f| %>
+            <%= f.hidden_field :review_id , value: review.id %>
+            <%= f.text_area :comment, {placeholder: 'コメントを入力してください', size: '40×20'} %>
+            <%= f.submit '送信' %><br>
+          <% end %>
+        <% end %>
+        <% review.comments.each do |comment| %>
+          <% if comment.user.image.attached? %>
+            <%= image_tag comment.user.image,size: '5×5' %>
+          <% else %>
+            <%= image_tag 'no_image',size: '5×5' %>
+          <% end %>
+          <%= comment.user.user_name %>
+          <%= comment.comment %><br>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

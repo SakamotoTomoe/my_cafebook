@@ -1,6 +1,7 @@
 <h1>レビュー編集</h1>
 
 <%= form_with model: @review, url: review_path(@review.id), method: :patch do |f| %>
+  カフェ画像 <%= f.file_field :image, accept: "image/*" %><br>
   店舗名<%= f.text_field :cafe_name %><br>
   住所<%= f.text_field :address %><br>
   営業時間<%= f.text_area :opening_hours %><br>
