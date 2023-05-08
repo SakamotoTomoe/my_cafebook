@@ -1,19 +1,33 @@
 <div class="container" style="margin: 30px;">
   <div class="row" >
-    <div class="col-md-12">
-      <div class="mx-auto" style="width: 400px;" class="text-center">
+    <div class="col-md-12" style="text-align:center;">
       <h1>レビュー投稿</h1>
       <%= form_with model: @review, url: reviews_path , method: :post do |f| %>
-        カフェ画像 <%= f.file_field :image, accept: "image/*" %><br>
-        店舗名 <%= f.text_field :cafe_name %><br>
-        住所 <%= f.text_field :address %><br>
-        営業時間 <%= f.text_area :opening_hours, {placeholder: '例）月～金　13：00～17：00'} %><br>
-        定休日 <%= f.text_field :day_off %><br>
-        レビュー <%= f.text_area :review %><br>
-        こだわり検索 <%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %><br>
+      <table>
+        <tr>
+          <th>カフェ画像</th><td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <th>店舗名</th><td><%= f.text_field :cafe_name %></td>
+        </tr>
+        <tr>
+          <th>住所</th><td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th><td><%= f.text_area :opening_hours, {placeholder: '例）月～金　13：00～17：00'} %></td>
+        </tr>
+        <tr>
+          <th>定休日</th><td><%= f.text_field :day_off %></td>
+        </tr>
+        <tr>
+          <th>レビュー</th><td><%= f.text_area :review %></td>
+        </tr>
+        <tr>
+          <th>こだわり検索</th><td><%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %></td>
+        </tr>
+      </table>
         <%= f.submit '投稿' %>
       <% end %>
-      </div>
     </div>
   </div>
 </div>

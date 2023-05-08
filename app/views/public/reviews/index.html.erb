@@ -1,21 +1,39 @@
 <div class="container" style="margin: 30px;">
   <div class="row" >
-    <div class="col-md-12">
-      <div class="mx-auto" style="width: 400px;" class="text-center">
-      <h1>レビュー一覧</h1>
+
       <% @reviews.each do |review| %>
+      <div class="col-md-6" style="padding: 20px;">
         <%= image_tag review.get_image(200,200) %><br>
-        店舗名 <%= link_to review.cafe_name, review_path(review.id) %><br>
-        住所 <%= review.address %><br>
-        営業時間 <%= review.opening_hours %><br>
-        定休日 <%= review.day_off %><br>
-        レビュー <%= review.review %><br>
-        <% review.keywords.each do |keyword| %>
-          こだわり <%= keyword.keyword %><br>
-        <% end %>
-        <% if current_user.id == review.user.id %>
-          <%= link_to '編集', edit_review_path(review.id) %>
-        <% end %>
+      </div>
+      <div class="col-md-6" style="padding: 20px;">
+        <table class="table table-bordered">
+          <tr>
+            <th>店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
+          </tr>
+          <tr>
+            <th>住所</th><td><%= review.address %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th><td><%= review.opening_hours %></td>
+          </tr>
+          <tr>
+            <th>定休日</th><td><%= review.day_off %></td>
+          </tr>
+          <tr>
+            <th>レビュー</th><td><%= review.review %></td>
+          </tr>
+          <tr>
+            <th>こだわり</th>
+            <td>
+              <% review.keywords.each do |keyword| %>
+                <%= keyword.keyword %>
+              <% end %>
+            </td>
+          </tr>
+          </table>
+        <%# if current_user.id == review.user.id %>
+          <%#= link_to '編集', edit_review_path(review.id) %>
+        <%# end %>
         <% if current_user %>
           <%= form_with model: @comments, url: comments_path, method: :post do |f| %>
             <%= f.hidden_field :review_id , value: review.id %>
@@ -32,6 +50,7 @@
           <%= comment.user.user_name %>
           <%= comment.comment %><br>
         <% end %>
+      </div>
       <% end %>
       </div>
     </div>

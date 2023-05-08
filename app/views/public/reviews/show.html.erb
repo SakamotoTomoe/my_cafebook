@@ -1,19 +1,49 @@
-<h1>レビュー詳細</h1>
-<%= image_tag @review.get_image(200,200) %><br>
-店舗名 <%= @review.cafe_name %><br>
-住所 <%= @review.address %><br>
-営業時間 <%= @review.opening_hours %><br>
-定休日 <%= @review.day_off %><br>
-レビュー <%= @review.review %><br>
-こだわり
-<% @review.keywords.each do |keyword| %>
-  <%= keyword.keyword %>
-<% end %><br>
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-4">
+      <div  style="padding: 50px;">
+      <%= image_tag @review.get_image(200,200) %><br>
+      投稿日 <%= @review.created_at.strftime('%Y/%m/%d') %><br>
+      ユーザー名 <%= @review.user.user_name %><br>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div  style="padding: 50px;">
+      <table class="table table-bordered" style="bordercolor: white;" >
+        <tr>
+          <th>店舗名</th><td><%= @review.cafe_name %></td>
+        </tr>
+        <tr>
+          <th>住所</th><td><%= @review.address %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th><td><%= @review.opening_hours %></td>
+        </tr>
+        <tr>
+          <th>定休日</th><td><%= @review.day_off %></td>
+        </tr>
+        <tr>
+          <th>レビュー</th><td><%= @review.review %></td>
+        </tr>
+        <tr>
+          <th>こだわり</th>
+          <td>
+            <% @review.keywords.each do |keyword| %>
+              <%= keyword.keyword %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
 
-<%= link_to '編集', edit_review_path(@review.id) %>
+        <%= link_to '編集', edit_review_path(@review.id) %><br>
 
-<% if @review.bookmarked_by?(current_user) %>
-  <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %>
-<% else %>
-  <%= link_to "ブックマーク", review_bookmarks_path(@review), method: :post %>
-<% end %>
+        <% if @review.bookmarked_by?(current_user) %>
+          <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %>
+        <% else %>
+          <%= link_to "ブックマーク", review_bookmarks_path(@review), method: :post %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
