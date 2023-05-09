@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
+    @reviews = current_user.reviews
   end
 
   def edit
