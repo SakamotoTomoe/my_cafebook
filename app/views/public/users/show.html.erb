@@ -12,11 +12,12 @@
       <%= link_to '編集する', edit_user_path(current_user) %><br>
     </div>
     <div class="col-md-6" style="margin: 30px;">
-      <h5>レビュー一覧</h5>
+      <h5 style="margin:30px;">投稿一覧</h5>
       <% @reviews.each do |review| %>
-        <table class="table table-bordered">
+        <table style="margin:30px;">
+          <%= image_tag review.get_image(100,100) %><br>
           <tr>
-            <th>店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
+            <th style="width:100px;">店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
           </tr>
           <tr>
             <th>住所</th><td><%= review.address %></td>
@@ -27,25 +28,15 @@
           <tr>
             <th>定休日</th><td><%= review.day_off %></td>
           </tr>
-          <tr>
-            <th>レビュー</th><td><%= review.review %></td>
-          </tr>
-          <tr>
-            <th>こだわり</th>
-            <td>
-              <% review.keywords.each do |keyword| %>
-                <%= keyword.keyword %>
-              <% end %>
-            </td>
-          </tr>
         </table>
       <% end %>
-      
-      <h5>ブックマーク一覧</h5>
+
+      <h5 style="margin:30px;">ブックマーク一覧</h5>
       <% @bookmarks.each do |bookmark| %>
-        <table>
+        <table style="margin:30px;">
+          <%= image_tag bookmark.review.get_image(100,100) %><br>
           <tr>
-            <th>投稿者名</th><td><%= bookmark.review.user.user_name %></td>
+            <th style="width:100px;">投稿者名</th><td><%= bookmark.review.user.user_name %></td>
           </tr>
           <tr>
             <th>店舗名</th>
@@ -63,17 +54,6 @@
           </tr>
           <tr>
             <th>定休日</th><td><%= bookmark.review.day_off %></td>
-          </tr>
-          <tr>
-            <th>レビュー</th><td><%= bookmark.review.review %></td>
-          </tr>
-          <tr>
-            <th>こだわり</th>
-            <td>
-              <% bookmark.review.keywords.each do |keyword| %>
-                <%= keyword.keyword %>
-              <% end %>
-            </td>
           </tr>
         </table>
       <% end %>

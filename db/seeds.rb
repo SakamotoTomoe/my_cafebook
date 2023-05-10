@@ -10,6 +10,11 @@
   #keyword: "ランチ"
   #)
 
+Admin.create!(
+  email: "abc@abc",
+  password: "abcabc"
+  )
+
 words = [
   'モーニング',
   'ランチ',
