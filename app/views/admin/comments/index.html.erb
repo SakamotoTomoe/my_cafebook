@@ -1,0 +1,19 @@
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-12">
+      <div class="mx-auto" style="width: 400px;" class="text-center">
+      <h1>コメント一覧</h1>
+      <% @comments.each do |comment| %>
+        <h3 strong><%=link_to comment.review.cafe_name , admin_review_path(comment.review.id) %></h3 strong><br>
+        <% if comment.user.image.attached? %>
+          <%= image_tag comment.user.image,size: '5×5' %>
+        <% else %>
+          <%= image_tag 'no_image',size: '5×5' %>
+        <% end %>
+        <%= comment.user.user_name %>
+        <%= comment.comment %><br>
+        <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+      <% end %>
+    </div>
+  </div>
+</div>
