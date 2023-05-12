@@ -1,34 +1,44 @@
-<h1>ユーザー詳細</h1>
-<% if @user.image.attached? %>
-  <%= image_tag @user.image,size: '200×200' %><br>
-<% else %>
-  <%= image_tag 'no_image',size: '200×200' %><br>
-<% end %>
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-4">
 
-<%= @user.user_name %><br>
-<%= @user.email %><br>
-<%= @user.introduction %><br>
-<% if @user.is_deleted == false %>
-  有効<br>
-<% else %>
-  退会<br>
-<% end %>
+      <h1>ユーザー詳細</h1>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image,size: '200×200' %><br>
+      <% else %>
+        <%= image_tag 'no_image',size: '200×200' %><br>
+      <% end %>
 
-<%= link_to '編集', edit_admin_user_path(@user.id) %>
+      <%= @user.user_name %><br>
+      <%= @user.email %><br>
+      <%= @user.introduction %><br>
+      <% if @user.is_deleted == false %>
+        有効<br>
+      <% else %>
+        退会<br>
+      <% end %>
 
-<h2>投稿一覧</h2>
-<% @reviews.each do |review| %>
-  <%= image_tag review.get_image(200,200) %><br>
-  <%= review.cafe_name %><br>
-  <%= review.address %><br>
-  <%= review.opening_hours %><br>
-  <%= review.day_off %><br>
-  <%= review.review %><br>
-  <%= link_to '詳細', admin_review_path(review.id) %>
-  <%= link_to '削除', url: admin_review_path(review.id) ,method: :delete %><br>
-<% end %>
+      <%= link_to '編集', edit_admin_user_path(@user.id) %>
 
-<h2>コメント一覧</h2>
-<% @comments.each do |comment| %>
-  <%= comment.comment %>
-<% end %>
+    </div>
+    <div class="col-md-8">
+
+      <h2>投稿一覧</h2>
+      <% @reviews.each do |review| %>
+        <%= image_tag review.get_image(200,200) %><br>
+        <%= review.cafe_name %><br>
+        <%= review.address %><br>
+        <%= review.opening_hours %><br>
+        <%= review.day_off %><br>
+        <%= review.review %><br>
+        <%= link_to '詳細', admin_review_path(review.id) %>
+        <%= link_to '削除', url: admin_review_path(review.id) ,method: :delete %><br>
+      <% end %>
+
+      <h2>コメント一覧</h2>
+      <% @comments.each do |comment| %>
+        <%= comment.comment %>
+      <% end %>
+    </div>
+  </div>
+</div>
