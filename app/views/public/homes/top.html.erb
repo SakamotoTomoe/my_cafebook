@@ -1,14 +1,60 @@
-<h1>top page</h1>
+<div class="container" style="margin: 30px;">
+  <div class="row" style="margin: 30px;" >
 
-<%= form_with url: search_path, local: true, method: :get do |f| %>
-  <%= f.text_field :word %>
-  <%= f.submit "検索" %>
-<% end %>
+    <%= form_with url: search_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word %>
+      <%= f.submit "検索" %>
+    <% end %>
 
-<%= form_tag  keyword_search_path, method: :get do %>
-  <% Keyword.all.each do |keyword| %>
-    <%= check_box_tag 'keywords[]', keyword.id %><%= keyword.keyword %>
-    <%#= label_tag keyword.keyword.capitalize, for: 'hogekeywords[]' %><br>
-  <% end %>
-  <%= submit_tag 'Search' %>
-<% end %>
+    <%= link_to "こだわり検索", search_path , class: "btn btn-sm" %>
+
+  </div>
+  <div class="row" style="margin: 30px;">
+
+    <h3>新着カフェ</h3>
+
+  </div>
+  <div class="row" style="margin: 30px:">
+
+    <% @reviews.each do |review| %>
+      <div class="col-md-4" style="padding: 20px;">
+        <%= image_tag review.get_image(200,200) %>
+      </div>
+      <div class="col-md-6" style="padding: 20px;">
+        <table class="table table-bordered">
+          <tr>
+            <th>店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
+          </tr>
+          <tr>
+            <th>住所</th><td><%= review.address %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th><td><%= review.opening_hours %></td>
+          </tr>
+          <tr>
+            <th>定休日</th><td><%= review.day_off %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <div class="row" style="margin: 30px;">
+    <h3>新着コメント</h3>
+  </div>
+  <div class="row" style="margin: 30px;">
+    <% @comments.each do |comment| %>
+      <div class="col-md-4">
+        <% if comment.user.image.attached? %>
+          <%= image_tag comment.user.image,size: '5×5' %>
+        <% else %>
+          <%= image_tag 'no_image',size: '5×5' %>
+        <% end %>
+        <%= comment.user.user_name %><br>
+        <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+        <%=link_to comment.review.cafe_name , admin_review_path(comment.review.id) %><br>
+        <%= comment.comment %><br>
+      </div>
+    <% end %>
+  </div>
+</div>
+

@@ -38,11 +38,12 @@
         <%= link_to '編集', edit_review_path(@review.id) %><br>
 
         <% if @review.bookmarked_by?(current_user) %>
-          <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %>
+          <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %><br>
         <% else %>
-          <%= link_to "ブックマーク", review_bookmarks_path(@review), method: :post %>
+          <%= link_to "ブックマーク", review_bookmarks_path(@review), method: :post %><br>
         <% end %>
 
+        <strong>コメント</strong><br>
         <% if current_user %>
           <%= form_with model: @comments, url: comments_path, method: :post do |f| %>
             <%= f.hidden_field :review_id , value: @review.id %>

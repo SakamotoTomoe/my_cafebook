@@ -4,7 +4,7 @@ class Public::CommentsController < ApplicationController
   def create
     comment = current_user.comments.build(comments_params)
     comment.save
-    redirect_to reviews_path
+    redirect_to review_path(comment.review.id)
   end
 
   private
