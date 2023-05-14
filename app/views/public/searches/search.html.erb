@@ -1,5 +1,5 @@
 <h1>こだわり検索</h1>
-<%= form_tag  keyword_search_path, method: :get do %>
+<%= form_tag  search_results_path, method: :get do %>
   <% Keyword.all.each do |keyword| %>
     <%= check_box_tag 'keywords[]', keyword.id %><%= keyword.keyword %>
     <%#= label_tag keyword.keyword.capitalize, for: 'hogekeywords[]' %><br>

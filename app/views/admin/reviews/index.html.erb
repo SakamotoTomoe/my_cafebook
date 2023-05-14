@@ -1,38 +1,38 @@
 <div class="container" style="margin: 30px;">
   <div class="row" >
 
-      <h1>レビュー一覧</h1>
-      <% @reviews.each do |review| %>
-      <div class="col-md-6" style="padding: 20px;">
-        <%= image_tag review.get_image(200,200) %><br>
-      </div>
-      <div class="col-md-6" style="padding: 20px;">
-        <table class="table table-bordered">
-          <tr>
-            <th>店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
-          </tr>
-          <tr>
-            <th>住所</th><td><%= review.address %></td>
-          </tr>
-          <tr>
-            <th>営業時間</th><td><%= review.opening_hours %></td>
-          </tr>
-          <tr>
-            <th>定休日</th><td><%= review.day_off %></td>
-          </tr>
-          <tr>
-            <th>レビュー</th><td><%= review.review %></td>
-          </tr>
-          <tr>
-            <th>こだわり</th>
-            <td>
-              <% review.keywords.each do |keyword| %>
-                <%= keyword.keyword %>
-              <% end %>
-            </td>
-          </tr>
-        </table>
-      </div>
+    <h1>レビュー一覧</h1>
+    <% @reviews.each do |review| %>
+    <div class="col-md-6" style="padding: 20px;">
+      <%= image_tag review.get_image(200,200) %><br>
+    </div>
+    <div class="col-md-6" style="padding: 20px;">
+      <table class="table table-bordered">
+        <tr>
+          <th>店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
+        </tr>
+        <tr>
+          <th>住所</th><td><%= review.address %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th><td><%= review.opening_hours %></td>
+        </tr>
+        <tr>
+          <th>定休日</th><td><%= review.day_off %></td>
+        </tr>
+        <tr>
+          <th>レビュー</th><td><%= review.review %></td>
+        </tr>
+        <tr>
+          <th>こだわり</th>
+          <td>
+            <% review.keywords.each do |keyword| %>
+              <%= keyword.keyword %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 

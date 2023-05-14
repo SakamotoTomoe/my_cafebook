@@ -26,18 +26,33 @@
       <h2>投稿一覧</h2>
       <% @reviews.each do |review| %>
         <%= image_tag review.get_image(200,200) %><br>
-        <%= review.cafe_name %><br>
-        <%= review.address %><br>
-        <%= review.opening_hours %><br>
-        <%= review.day_off %><br>
-        <%= review.review %><br>
+        <%= review.created_at.strftime('%Y/%m/%d') %><br>
+        <table>
+          <tr>
+            <th>店舗名</th><td><%= review.cafe_name %></td>
+          </tr>
+          <tr>
+            <th>住所</th><td><%= review.address %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th><td><%= review.opening_hours %></td>
+          </tr>
+          <tr>
+            <th>定休日</th><td><%= review.day_off %></td>
+          </tr>
+          <tr>
+            <th>レビュー</th><td><%= review.review %></td>
+          </tr>
+        </table>
         <%= link_to '詳細', admin_review_path(review.id) %>
         <%= link_to '削除', url: admin_review_path(review.id) ,method: :delete %><br>
       <% end %>
 
       <h2>コメント一覧</h2>
       <% @comments.each do |comment| %>
-        <%= comment.comment %>
+        <%= link_to comment.review.cafe_name , admin_review_path(comment.review.id) %><br>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+        <%= comment.comment %><br>
       <% end %>
     </div>
   </div>
