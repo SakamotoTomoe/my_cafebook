@@ -12,7 +12,7 @@
       <%= link_to '編集する', edit_user_path(current_user) %><br>
     </div>
     <div class="col-md-6" style="margin: 30px;">
-      <h5 style="margin:30px;">投稿一覧</h5>
+      <h3 style="margin:30px;">投稿一覧</h3>
       <% @reviews.each do |review| %>
         <table style="margin:30px;">
           <%= image_tag review.get_image(100,100) %><br>
@@ -31,7 +31,7 @@
         </table>
       <% end %>
 
-      <h5 style="margin:30px;">ブックマーク一覧</h5>
+      <h3 style="margin:30px;">ブックマーク一覧</h3>
       <% @bookmarks.each do |bookmark| %>
         <table style="margin:30px;">
           <%= image_tag bookmark.review.get_image(100,100) %><br>

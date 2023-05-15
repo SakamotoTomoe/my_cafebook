@@ -64,6 +64,6 @@ class Public::ReviewsController < ApplicationController
   private
 
   def reviews_params
-    params.require(:review).permit(:cafe_name, :address, :opening_hours, :day_off, :review)
+    params.require(:review).permit(:cafe_name, :address, :opening_hours, :day_off, :review, :image)
   end
 end

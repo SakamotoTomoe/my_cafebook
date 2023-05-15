@@ -35,7 +35,9 @@
         </tr>
       </table>
 
-        <%= link_to '編集', edit_review_path(@review.id) %><br>
+        <% if user_signed_in? && current_user.id == @review.user.id %>
+          <%= link_to '編集', edit_review_path(@review.id) %><br>
+        <% end %>
 
         <% if @review.bookmarked_by?(current_user) %>
           <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %><br>
@@ -52,6 +54,7 @@
           <% end %>
         <% end %>
         <% @review.comments.each do |comment| %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
           <% if comment.user.image.attached? %>
             <%= image_tag comment.user.image,size: '5×5' %>
           <% else %>
