@@ -1,17 +1,24 @@
-<h2>検索結果2 "<%= @word %>"</h2>
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-8">
+      <h2>検索結果 "<%= @keywords %>"</h2>
 
-  <ul>
-    <% @reviews.each do |review| %>
-      <li>
-        店舗名 <%= review.cafe_name %><br>
-        住所 <%= review.address %><br>
-        営業時間 <%= review.opening_hours %><br>
-        定休日 <%= review.day_off %><br>
-        レビュー <%= review.review %><br>
-        こだわり
-        <% review.keywords.each do |keyword| %>
-          <%= keyword.keyword %>
-        <% end %><br>
-      </li>
-    <% end %>
-  </ul>
+      <ul>
+        <% @reviews.each do |review| %>
+          <li>
+            <%= image_tag review.get_image(200,200) %><br>
+            店舗名 <%= review.cafe_name %><br>
+            住所 <%= review.address %><br>
+            営業時間 <%= review.opening_hours %><br>
+            定休日 <%= review.day_off %><br>
+            レビュー <%= review.review %><br>
+            こだわり
+            <% review.keywords.each do |keyword| %>
+              <%= keyword.keyword %>
+            <% end %><br>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
