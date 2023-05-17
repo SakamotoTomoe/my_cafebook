@@ -1,15 +1,15 @@
 <div class="container" style="margin: 30px;">
-  <div class="row" >
+  <h1>レビュー一覧</h1>
 
-    <h1>レビュー一覧</h1>
+  <div class="row">
     <% @reviews.each do |review| %>
-    <div class="col-md-6" style="padding: 20px;">
+    <div class="col-md-4" style="padding: 20px;">
       <%= image_tag review.get_image(200,200) %><br>
     </div>
-    <div class="col-md-6" style="padding: 20px;">
+    <div class="col-md-8" style="padding: 20px;">
       <table class="table table-bordered">
         <tr>
-          <th>店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
+          <th>店舗名</th><td><%= link_to review.cafe_name, admin_review_path(review.id) %></td>
         </tr>
         <tr>
           <th>住所</th><td><%= review.address %></td>
@@ -33,6 +33,7 @@
         </tr>
       </table>
     </div>
+    <% end %>
   </div>
 </div>
 

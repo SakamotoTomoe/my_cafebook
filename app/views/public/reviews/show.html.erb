@@ -35,17 +35,9 @@
         </tr>
       </table>
 
-        <% if user_signed_in? && current_user.id == @review.user.id %>
-          <%= link_to '編集', edit_review_path(@review.id) %><br>
-        <% end %>
+          <%= link_to '編集', edit_admin_review_path(@review.id) %><br>
 
-        <% if @review.bookmarked_by?(current_user) %>
-          <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %><br>
-        <% else %>
-          <%= link_to "ブックマーク", review_bookmarks_path(@review), method: :post %><br>
-        <% end %>
-
-        <strong>コメント</strong><br>
+        <h5 class="mx-auto text-center" style="margin: 30px;">コメント</h5><br>
         <% if current_user %>
           <%= form_with model: @comments, url: comments_path, method: :post do |f| %>
             <%= f.hidden_field :review_id , value: @review.id %>
@@ -56,9 +48,9 @@
         <% @review.comments.each do |comment| %>
           <%= comment.created_at.strftime('%Y/%m/%d') %>
           <% if comment.user.image.attached? %>
-            <%= image_tag comment.user.image,size: '5×5' %>
+            <%= image_tag comment.user.image, class: "rounded-circle", style: "width: 50px; height: 50px;" %>
           <% else %>
-            <%= image_tag 'no_image',size: '5×5' %>
+            <%= image_tag 'no_image', class: "rounded-circle", style: "width: 50px; height: 50px;" %>
           <% end %>
           <%= comment.user.user_name %>
           <%= comment.comment %><br>

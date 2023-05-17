@@ -1,15 +1,28 @@
 <div class="container" style="margin: 30px;">
   <div class="row" >
-    <div class="col-md-8">
+    <div class="col-md-12">
       <h1>レビュー編集</h1>
-
-      <%= form_with model: @review, url: review_path(@review.id), method: :patch do |f| %>
-        店舗名<%= f.text_field :cafe_name %><br>
-        住所<%= f.text_field :address %><br>
-        営業時間<%= f.text_area :opening_hours %><br>
-        定休日<%= f.text_field :day_off %><br>
-        レビュー<%= f.text_area :review %><br>
-        こだわり<%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %>
+      <%= form_with model: @review, url: admin_review_path(@review.id), method: :patch do |f| %>
+      <table>
+        <tr>
+          <th style="width: 100px;">店舗名</th><td style="width: 900px;"><%= f.text_field :cafe_name %></td>
+        </tr>
+        <tr>
+          <th>住所</th><td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th><td><%= f.text_area :opening_hours %></td>
+        </tr>
+        <tr>
+          <th>定休日</th><td><%= f.text_field :day_off %></td>
+        </tr>
+        <tr>
+          <th>レビュー</th><td><%= f.text_area :review %></td>
+        </tr>
+        <tr>
+          <th>こだわり</th><td><%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %></td>
+        </tr>
+      </table>
         <%= f.submit '更新' %>
       <% end %>
 
