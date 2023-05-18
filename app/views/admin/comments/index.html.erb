@@ -14,6 +14,8 @@
         <% end %>
         <%= link_to comment.user.user_name , admin_user_path(comment.user.id) %>
         <%= comment.comment %><br>
+        <%= link_to '編集', edit_admin_comment_path(comment.id) %>
+        <%= link_to '削除', admin_comment_path(comment.id), method: :delete , "data-confirm" => "本当に削除しますか？" %>
       </div>
       <% end %>
     </div>
