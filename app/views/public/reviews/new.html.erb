@@ -1,11 +1,11 @@
 <div class="container" style="margin: 30px;">
   <div class="row" >
-    <div class="col-md-12" style="text-align:center;">
+    <div class="col-md-12">
       <h1>レビュー投稿</h1>
       <%= form_with model: @review, url: reviews_path , method: :post do |f| %>
       <table>
         <tr>
-          <th>カフェ画像</th><td><%= f.file_field :image, accept: "image/*" %></td>
+          <th style="width: 100px;">カフェ画像</th><td><%= f.file_field :image, accept: "image/*" %></td>
         </tr>
         <tr>
           <th>店舗名</th><td><%= f.text_field :cafe_name %></td>
@@ -14,16 +14,16 @@
           <th>住所</th><td><%= f.text_field :address %></td>
         </tr>
         <tr>
-          <th>営業時間</th><td><%= f.text_area :opening_hours, {placeholder: '例）月～金　13：00～17：00'} %></td>
+          <th>営業時間</th><td><%= f.text_area :opening_hours, style: "width:400px; height: 80px;", placeholder: "例）月～金　13：00～17：00" %></td>
         </tr>
         <tr>
           <th>定休日</th><td><%= f.text_field :day_off %></td>
         </tr>
         <tr>
-          <th>レビュー</th><td><%= f.text_area :review %></td>
+          <th>レビュー</th><td><%= f.text_area :review , style: "width:400px; height: 100px;" %></td>
         </tr>
         <tr>
-          <th>こだわり検索</th><td><%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %></td>
+          <th>こだわり</th><td><%= f.collection_check_boxes :keyword_ids, @keywords, :id, :keyword %></td>
         </tr>
       </table>
         <%= f.submit '投稿' %>
