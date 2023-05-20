@@ -3,7 +3,7 @@
     <div class="col-md-8">
       <h1>こだわり検索</h1>
       <%= form_tag  search_results_path, method: :get do %>
-        <% Keyword.all.each do |keyword| %>
+        <% @keywords.each do |keyword| %>
           <%= check_box_tag 'keywords[]', keyword.id %><%= keyword.keyword %>
           <%#= label_tag keyword.keyword.capitalize, for: 'hogekeywords[]' %>
         <% end %><br>
