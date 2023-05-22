@@ -35,13 +35,20 @@
           </td>
         </tr>
       </table>
-
-          <%= link_to '編集', edit_review_path(@review.id) %><br>
-          <% if @review.bookmarked_by?(current_user) %>
+        <% if user_signed_in? %>
+          <% if @review.user_id == current_user.id %>
+            <%= link_to '編集', edit_review_path(@review.id) %><br>
+            <% if @review.bookmarked_by?(current_user) %>
+              <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %>
+            <% else %>
+              <%= link_to "ブックマーク", review_bookmarks_path(@review), method: :post %>
+            <% end %>
+          <% elsif @review.bookmarked_by?(current_user) %>
             <%= link_to "ブックマークを外す", review_bookmarks_path(@review), method: :delete %>
           <% else %>
             <%= link_to "ブックマーク", review_bookmarks_path(@review), method: :post %>
           <% end %>
+        <% end %>
 
         <h3 style="margin: 30px 0px; background:linear-gradient(transparent 70%, #FFFF00 0%);">コメント</h3><br>
         <% if current_user %>

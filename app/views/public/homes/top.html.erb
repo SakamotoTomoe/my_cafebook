@@ -1,6 +1,9 @@
+<div style="margin: 30px;">
+  <%= notice %>
+</div>
+
 <div class="container" style="margin: 30px; padding: 100px;">
   <div class="row">
-
     <div class="col-md-12" style="margin: 20px;">
       <div style="text-align: center;">
         <%= form_with url: search_results_path, local: true, method: :get do |f| %>
@@ -29,7 +32,7 @@
       <div class="col-md-6" style="padding: 20px;">
         <table class="table table-bordered">
           <tr>
-            <th>店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
+            <th style="width: 100px;">店舗名</th><td><%= link_to review.cafe_name, review_path(review.id) %></td>
           </tr>
           <tr>
             <th>住所</th><td><%= review.address %></td>
@@ -43,7 +46,9 @@
         </table>
       </div>
     <% end %>
-    <%= paginate @reviews %>
+    <div class="col-md-12 d-flex justify-content-center">
+      <%= paginate @reviews %>
+    </div>
   </div>
   <div class="row" style="margin: 30px;">
     <h3 style=" background:linear-gradient(transparent 70%, #FFFF00 0%);">新着コメント</h3>
@@ -61,6 +66,7 @@
         <%= comment.user.user_name %>
         <%= comment.comment %><br>
       <% end %>
+      <%= paginate @comments, :param_name => 'comment_page' %>
     </div>
   </div>
 </div>
