@@ -1,0 +1,12 @@
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-12">
+      <h1>コメント編集</h1>
+
+      <%= form_with model: @comment , url: admin_comment_path(@comment.id) , method: :patch do |f| %>
+        <%= f.text_area :comment %>
+        <%= f.submit '更新' %>
+      <% end %>
+    </div>
+  </div>
+</div>

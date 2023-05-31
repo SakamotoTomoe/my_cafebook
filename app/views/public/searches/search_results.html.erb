@@ -1,0 +1,49 @@
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-8">
+      <h2>
+        検索結果
+        <% if params[:word].present? %>
+          【<%= @word %>】
+        <% elsif params[:keywords].present? %>
+          <% @keywords.each do |keyword| %>
+            【<%= keyword.keyword %>】
+          <% end %>
+        <% else %>
+          全て
+        <% end %>
+      </h2>
+
+      <ul>
+        <% @reviews.each do |review| %>
+          <table>
+            <%= image_tag review.get_image(200,200) %>
+            <tr>
+              <th style="width: 100px;">店舗名</th><td><%= link_to review.cafe_name , review_path(review.id) %></td>
+            </tr>
+            <tr>
+              <th>住所</th><td><%= review.address %></td>
+            </tr>
+            <tr>
+              <th>営業時間</th><td><%= review.opening_hours %></td>
+            </tr>
+            <tr>
+              <th>定休日</th><td><%= review.day_off %></td>
+            </tr>
+            <tr>
+              <th>レビュー</th><td><%= review.review %></td>
+            </tr>
+            <tr>
+              <th>こだわり</th>
+              <td>
+                <% review.keywords.each do |keyword| %>
+                  <%= keyword.keyword %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

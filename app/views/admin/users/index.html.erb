@@ -1,0 +1,42 @@
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-12">
+
+      <h1>ユーザー一覧</h1>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 150px;">ユーザーネーム</th>
+              <th style="width: 250px;">メールアドレス</th>
+              <th style="width: 150px;">退会ステータス</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @users.each do |user| %>
+          <tbody>
+            <tr>
+              <td>
+                <% if user.image.attached? %>
+                  <%= image_tag user.image, class: "rounded-circle", style: "width: 50px; height: 50px;" %>
+                <% else %>
+                  <%= image_tag 'no_image', class: "rounded-circle", style: "width: 50px; height: 50px;" %>
+                <% end %>
+                <%= link_to user.user_name, admin_user_path(user.id) %>
+              </td>
+              <td><%= user.email %></td>
+              <td>
+                <% if user.is_deleted == false %>
+                  有効<br>
+                <% else %>
+                  退会<br>
+                <% end %>
+              </td>
+              <td><%= link_to '編集', edit_admin_user_path(user.id) %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>

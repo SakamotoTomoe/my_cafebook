@@ -1,0 +1,14 @@
+<div class="container" style="margin: 30px;">
+  <div class="row" >
+    <div class="col-md-8">
+      <h1>こだわり検索</h1>
+      <%= form_tag  search_results_path, method: :get do %>
+        <% @keywords.each do |keyword| %>
+          <%= check_box_tag 'keywords[]', keyword.id %><%= keyword.keyword %>
+          <%#= label_tag keyword.keyword.capitalize, for: 'hogekeywords[]' %>
+        <% end %><br>
+        <%= submit_tag '検索' %>
+      <% end %>
+    </div>
+  </div>
+</div>

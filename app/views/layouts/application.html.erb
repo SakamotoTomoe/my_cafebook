@@ -6,11 +6,75 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/"><strong>My Cafebook</strong></a>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "レビュー一覧", admin_reviews_path , class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "コメント一覧", admin_comments_path , class: 'nav-link text-dark' %>
+                </li>
+                <li>
+                  <%= link_to 'ユーザー一覧',  admin_users_path , class: 'nav-link text-dark' %>
+                </li>
+                <li>
+                  <%= link_to 'ログアウト', destroy_admin_session_path , method: :delete, class: 'nav-link text-dark' %>
+                </li>
+              <% elsif user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to 'マイページ', user_path(current_user) , class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'レビュー一覧', reviews_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'レビュー投稿', new_review_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_user_session_path , method: :delete , class: 'nav-link text-dark' %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'レビュー一覧', reviews_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '新規登録',  new_user_registration_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post , class: 'nav-link text-dark' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
+      <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div style="text-align: center;">
+              my cafebook
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
