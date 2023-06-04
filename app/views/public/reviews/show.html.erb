@@ -63,7 +63,7 @@
           <% if comment.user.image.attached? %>
             <%= image_tag comment.user.image, class: "rounded-circle", style: "width: 50px; height: 50px;" %>
           <% else %>
-            <%= image_tag 'no_image', class: "rounded-circle", style: "width: 50px; height: 50px;" %>
+            <%= image_tag 'no_image.jpg', class: "rounded-circle", style: "width: 50px; height: 50px;" %>
           <% end %>
           <%= comment.user.user_name %>
           <%= comment.comment %><br>
