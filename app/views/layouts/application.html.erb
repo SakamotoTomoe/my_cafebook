@@ -32,29 +32,29 @@
                 </li>
               <% elsif user_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to 'マイページ', user_path(current_user) , class: 'nav-link text-dark' %>
+                  <strong><%= link_to 'マイページ', user_path(current_user) , class: 'nav-link text-dark' %></strong>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'レビュー一覧', reviews_path, class: 'nav-link text-dark' %>
+                  <strong><%= link_to 'レビュー一覧', reviews_path, class: 'nav-link text-dark' %></strong>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'レビュー投稿', new_review_path, class: 'nav-link text-dark' %>
+                  <strong><%= link_to 'レビュー投稿', new_review_path, class: 'nav-link text-dark' %></strong>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ログアウト', destroy_user_session_path , method: :delete , class: 'nav-link text-dark' %>
+                  <strong><%= link_to 'ログアウト', destroy_user_session_path , method: :delete , class: 'nav-link text-dark' %></strong>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to 'レビュー一覧', reviews_path, class: 'nav-link text-dark' %>
+                  <strong><%= link_to 'レビュー一覧', reviews_path, class: 'nav-link text-dark' %></strong>
                 </li>
                 <li class="nav-item">
-                  <%= link_to '新規登録',  new_user_registration_path, class: 'nav-link text-dark' %>
+                  <strong><%= link_to '新規登録',  new_user_registration_path, class: 'nav-link text-dark' %></strong>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
+                  <strong><%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %></strong>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post , class: 'nav-link text-dark' %>
+                  <strong><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post , class: 'nav-link text-dark' %></strong>
                 </li>
               <% end %>
             </ul>
