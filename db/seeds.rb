@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Admin.create!(
+  email: "abc@abc",
+  password: "abcabc"
+)
+
 users = User.create!(
   [
     {email: 'olivia@example.com', user_name: 'Olivia', password: 'password', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")},
@@ -22,10 +27,19 @@ reviews = Review.create!(
   ]
 )
 
-Admin.create!(
-  email: "abc@abc",
-  password: "abcabc"
-  )
+Comment.create!(
+  [
+    {comment: '素敵ですね！', user_id: users[0].id , review_id: reviews[2].id}
+  ]
+)
+
+Bookmark.create!(
+  [
+    {user_id: users[0].id , review_id: reviews[2].id}
+  ]
+)
+
+
 
 words = [
   '喫茶店',
