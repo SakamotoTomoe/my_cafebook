@@ -1,5 +1,7 @@
 class Public::ReviewsController < ApplicationController
 
+  before_action :authenticate_user!, except: [:show, :index, :search]
+
   def new
     @review = Review.new
     @keywords = Keyword.all

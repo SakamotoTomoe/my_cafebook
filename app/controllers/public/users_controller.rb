@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def show
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)

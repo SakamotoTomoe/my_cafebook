@@ -5,6 +5,11 @@ class Public::CommentsController < ApplicationController
     comment = current_user.comments.build(comments_params)
     comment.save
     redirect_to review_path(comment.review.id)
+    if comment.save
+      redirect_to review_path(comment.review.id) and return
+    else
+      redirect_to review_path(comment.review.id) and return
+    end
   end
 
   private

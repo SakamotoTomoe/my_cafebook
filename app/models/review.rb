@@ -8,6 +8,12 @@ class Review < ApplicationRecord
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
 
+  validates :cafe_name, presence: true
+  validates :address, presence: true
+  validates :opening_hours, presence: true
+  validates :day_off, presence:true
+  validates :review, presence:true
+
   def get_image(width, height)
   unless image.attached?
     file_path = Rails.root.join('app/assets/images/review_noimage.jpg')
@@ -15,7 +21,7 @@ class Review < ApplicationRecord
   end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end
