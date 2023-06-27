@@ -18,6 +18,10 @@ class Public::ReviewsController < ApplicationController
       end
       redirect_to review_path(@review.id)
     else
+      #@review = Review.new
+      @keywords = Keyword.all
+      @review.valid?
+      @review.errors.full_messages_for(:review)
       render "new"
     end
   end
@@ -28,7 +32,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
+    @reviews = Review.page(params[:page]).order(created_at: :desc)
     @comments = Comment.new
   end
 

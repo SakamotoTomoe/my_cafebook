@@ -4,9 +4,5 @@ class Public::HomesController < ApplicationController
     @reviews = Review.page(params[:page]).order(created_at: :desc)
     @comments = Comment.page(params[:comment_page]).per(3).order(created_at: :desc)
   end
-
-  def index
-    @review = Review.find(params[:id])
-  end
-
+  
 end

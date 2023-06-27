@@ -11,8 +11,8 @@ class Review < ApplicationRecord
   validates :cafe_name, presence: true
   validates :address, presence: true
   validates :opening_hours, presence: true
-  validates :day_off, presence:true
-  validates :review, presence:true
+  validates :day_off, presence: true
+  validates :review, presence: true
 
   def get_image(width, height)
   unless image.attached?

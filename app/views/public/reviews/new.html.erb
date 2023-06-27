@@ -1,7 +1,12 @@
 <div class="container" style="margin: 30px;">
   <div class="row" >
     <div class="col-md-12">
-      <h1>レビュー投稿</h1>
+      <h1>レビュー投稿</h1
+
+          <% @review.errors.full_messages.each do |message| %>
+            <%= message %>
+          <% end %>
+
       <%= form_with model: @review, url: reviews_path , method: :post do |f| %>
       <table>
         <tr>

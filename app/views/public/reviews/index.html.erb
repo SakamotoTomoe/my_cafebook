@@ -21,13 +21,10 @@
           </tr>
           <tr>
         </table>
-        <%# if current_user.id == review.user.id %>
-          <%#= link_to '編集', edit_review_path(review.id) %>
-        <%# end %>
-
       </div>
       <% end %>
+      <div class="col-md-12 d-flex justify-content-center">
+        <%= paginate @reviews %>
       </div>
-    </div>
   </div>
 </div>
