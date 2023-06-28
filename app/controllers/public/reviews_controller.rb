@@ -57,6 +57,13 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    review.user_id = current_user.id
+    review.destroy
+    redirect_to review_path(@review.id), notice: "投稿を削除しました。"
+  end
+
   def search
     if params[:searchword].present?
       @reviews = Review.where('caption LIKE ?', "%#{params[:searchword]}%")
