@@ -9,12 +9,8 @@ class Public::SearchesController < ApplicationController
       @word = params[:word]
       @reviews = Review.where('cafe_name LIKE(?) OR address LIKE(?) OR opening_hours LIKE(?) OR review LIKE(?)', "%#{params[:word]}%", "%#{params[:word]}%", "%#{params[:word]}%", "%#{params[:word]}%")
     elsif params[:keywords].present?
-      @keywords = Keyword.find(params[:keywords])
-      @reviews = []
-      @keywords.each do |keyword|
-        @reviews = @reviews + keyword.reviews
-      end
-      @reviews.uniq
+      @keywords = Keyword.where(id: params[:keywords])
+      @reviews = Review.joins(:keywords).where(keywords: { id: params[:keywords]}).distinct
     else
       @reviews = Review.all
     end

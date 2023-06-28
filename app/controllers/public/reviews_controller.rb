@@ -1,6 +1,8 @@
 class Public::ReviewsController < ApplicationController
 
   before_action :authenticate_user!, except: [:show, :index, :search]
+  before_action :is_matching_login_user, only: [:edit, :update]
+
 
   def new
     @review = Review.new
@@ -18,17 +20,14 @@ class Public::ReviewsController < ApplicationController
       end
       redirect_to review_path(@review.id)
     else
-      #@review = Review.new
       @keywords = Keyword.all
-      @review.valid?
-      @review.errors.full_messages_for(:review)
       render "new"
     end
   end
 
   def show
     @review = Review.find(params[:id])
-    @comments = Comment.new
+    @comment = Comment.new
   end
 
   def index
@@ -71,5 +70,13 @@ class Public::ReviewsController < ApplicationController
 
   def reviews_params
     params.require(:review).permit(:cafe_name, :address, :opening_hours, :day_off, :review, :image)
+  end
+
+  def is_matching_login_user
+    review = Review.find(params[:id])
+    user = review.user.id
+    unless user == current_user.id
+      redirect_to reviews_path
+    end
   end
 end

@@ -51,8 +51,17 @@
         <% end %>
 
         <h3 style="margin: 30px 0px; background:linear-gradient(transparent 70%, #FFFF00 0%);">コメント</h3><br>
+        <% if @comment.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
         <% if current_user %>
-          <%= form_with model: @comments, url: comments_path, method: :post do |f| %>
+          <%= form_with model: @comment, url: comments_path, method: :post do |f| %>
             <%= f.hidden_field :review_id , value: @review.id %>
             <%= f.text_area :comment, {placeholder: 'コメントを入力してください', size: '40×20'} %>
             <%= f.submit '送信' %><br>

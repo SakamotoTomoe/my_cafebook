@@ -1,10 +1,14 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
-    comment = current_user.comments.build(comments_params)
-    comment.save
-    redirect_to review_path(comment.review.id)
+    @comment = current_user.comments.build(comments_params)
+    if @comment.save
+      redirect_to review_path(@comment.review.id)
+    else
+      @review = Review.find(@comment.review_id)
+      render "public/reviews/show"
+    end
   end
 
   private

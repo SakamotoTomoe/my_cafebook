@@ -63,7 +63,10 @@
       </nav>
     </header>
     <main class="mb-auto">
-      <p class="alert" style="color:red;"><%= alert %></p>
+      <div style="margin: 30px;">
+        <p class="notice" style="color:green;"><%= notice %></p>
+        <p class="alert" style="color:red;"><%= alert %></p>
+      </div>
       <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">
