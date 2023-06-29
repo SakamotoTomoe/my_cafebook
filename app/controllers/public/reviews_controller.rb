@@ -42,26 +42,32 @@ class Public::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review.user_id = current_user.id
-    if @review.update(reviews_params)
-      @review.keywords.destroy_all
-      keyword_ids = params[:review][:keyword_ids]
-      keyword_ids[1..-1].each do |keyword_id|
-        keyword = Keyword.find(keyword_id.to_i)
-        @review.keywords << keyword #関連付ける
+    if @review.user_id == current_user.id
+      if @review.update(reviews_params)
+        @review.keywords.destroy_all
+        keyword_ids = params[:review][:keyword_ids]
+        keyword_ids[1..-1].each do |keyword_id|
+          keyword = Keyword.find(keyword_id.to_i)
+          @review.keywords << keyword #関連付ける
+        end
+        redirect_to review_path(@review.id), notice: "投稿を編集しました。"
+      else
+        @keywords = Keyword.all
+        render :edit
       end
-      redirect_to review_path(@review.id)
     else
-      @keywords = Keyword.all
-      render :edit
+      redirect_to review_path(@review.id), notice: "他ユーザーのレビューは編集できません。"
     end
   end
 
   def destroy
     review = Review.find(params[:id])
-    review.user_id = current_user.id
-    review.destroy
-    redirect_to review_path(@review.id), notice: "投稿を削除しました。"
+    if review.user_id == current_user.id
+      review.destroy
+      redirect_to user_path(current_user), notice: "投稿を削除しました。"
+    else
+      redirect_to user_path(current_user), notice: "他ユーザーのレビューは削除できません。"
+    end
   end
 
   def search

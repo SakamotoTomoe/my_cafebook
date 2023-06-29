@@ -21,13 +21,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :reviews, except: [:index] do
+    resources :reviews do
       resource :bookmarks, only: [:create, :destroy]
     end
-  end
-
-  scope module: :public do
-    resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
 
   scope module: :public do

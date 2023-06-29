@@ -14,9 +14,15 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = current_user
-    user.update(user_params)
-    redirect_to user_path(user.id)
+    user = User.find(params[:id])
+    if user.email == 'guest@example.com'
+      redirect_to user_path(user.id)
+    elsif user == current_user
+      user.update(user_params)
+      redirect_to user_path(user.id)
+    else
+      redirect_to user_path(user.id)
+    end
   end
 
   private
